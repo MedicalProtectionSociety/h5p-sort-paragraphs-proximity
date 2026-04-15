@@ -367,6 +367,36 @@ export default class SortParagraphsProximityContent {
         }
       }
     }
+    else if (this.options.scoringMode === 'proximity') {
+
+      correctAnswers = Util.createArray(this.paragraphs.length);
+
+      const draggablesPlain = draggables.map(d => d.innerText.trim());
+
+      const correctOrder = [...paragraphs]
+        .map(p => p.innerText.trim());
+
+      let score = 0;
+
+      draggablesPlain.forEach((item, index) => {
+
+        const correctIndex = correctOrder.indexOf(item);
+
+        const distance = Math.abs(index - correctIndex);
+
+        // convert distance → score contribution
+        const itemScore = Math.max(0, this.paragraphs.length - distance);
+
+        score += itemScore;
+
+        correctAnswers[index] = (distance === 0);
+      });
+
+      return {
+        correctAnswers,
+        score: Math.max(0, score)
+      };
+    }
 
     return {
       correctAnswers: correctAnswers,
