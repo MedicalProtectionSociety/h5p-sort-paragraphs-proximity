@@ -1,28 +1,28 @@
 {
   "title": "Sort the Paragraphs",
-  "description": "Let students sort paragraphs into the correct order",
+  "description": "Let students sort paragraphs into the correct order with proxity scoring",
   "majorVersion": 0,
-  "minorVersion": 11,
-  "patchVersion": 16,
+  "minorVersion": 1,
+  "patchVersion": 1,
   "runnable": 1,
-  "author": "Oliver Tacke",
+  "author": "Oliver Tacke, Adam Laird",
   "license": "MIT",
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 27
   },
-  "machineName": "H5P.SortParagraphs",
+  "machineName": "H5P.SortParagraphsProximity",
   "embedTypes": [
     "iframe"
   ],
   "preloadedJs": [
     {
-      "path": "dist/h5p-sort-paragraphs.js"
+      "path": "dist/h5p-sort-paragraphs-proximity.js"
     }
   ],
   "preloadedCss": [
     {
-      "path": "dist/h5p-sort-paragraphs.css"
+      "path": "dist/h5p-sort-paragraphs-proximity.css"
     }
   ],
   "preloadedDependencies": [

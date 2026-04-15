@@ -1,7 +1,7 @@
 // Import required classes
-import Util from './h5p-sort-paragraphs-util.js';
-import SortParagraphsParagraph from './h5p-sort-paragraphs-paragraph.js';
-import SortParagraphsSeparator from './h5p-sort-paragraphs-separator.js';
+import Util from './h5p-sort-paragraphs-proximity-util.js';
+import SortParagraphsProximityParagraph from './h5p-sort-paragraphs-proximity-paragraph.js';
+import SortParagraphsProximitySeparator from './h5p-sort-paragraphs-proximity-separator.js';
 
 /** @constant {number} SECOND_LAST_INDEX_OFFSET Offset for second last item. */
 const SECOND_LAST_INDEX_OFFSET = 2;
@@ -13,7 +13,7 @@ const FOCUS_DELAY_SMALL = 100;
 const FOCUS_DELAY_LARGE = 550;
 
 /** Class representing the content */
-export default class SortParagraphsContent {
+export default class SortParagraphsProximityContent {
   /**
    * @class
    * @param {object} params Parameters.
@@ -32,7 +32,7 @@ export default class SortParagraphsContent {
     }, callbacks);
 
     this.content = document.createElement('div');
-    this.content.classList.add('h5p-sort-paragraphs-content');
+    this.content.classList.add('h5p-sort-paragraphs-proximity-content');
 
     this.draggedElement = null; // Currently dragged element
     this.answerGiven = Array.isArray(this.params.previousState?.order);
@@ -71,7 +71,7 @@ export default class SortParagraphsContent {
       if (index === params.paragraphs.length - SECOND_LAST_INDEX_OFFSET) {
         return;
       }
-      this.separators.push(new SortParagraphsSeparator());
+      this.separators.push(new SortParagraphsProximitySeparator());
     });
 
     // Build list of paragraphs
@@ -241,7 +241,7 @@ export default class SortParagraphsContent {
 
   /**
    * Add ARIA for score explanation.
-   * @param {SortParagraphsParagraph[]|SortParagraphsSeparator[]} elements Elements.
+   * @param {SortParagraphsProximityParagraph[]|SortParagraphsProximitySeparator[]} elements Elements.
    * @param {object} results Results.
    * @param {boolean[]} results.correctAnswers True if paragraph/separator at index is correct.
    */
@@ -280,7 +280,7 @@ export default class SortParagraphsContent {
 
   /**
    * Show H5P Question score explanation.
-   * @param {SortParagraphsParagraph[]|SortParagraphsSeparator[]} elements Elements.
+   * @param {SortParagraphsProximityParagraph[]|SortParagraphsProximitySeparator[]} elements Elements.
    * @param {object} results Results.
    * @param {boolean[]} results.correctAnswers True if paragraph/separator at index is correct.
    */
@@ -376,7 +376,7 @@ export default class SortParagraphsContent {
 
   /**
    * Build list of paragraphs.
-   * @param {SortParagraphsParagraph[]} paragraphs Paragraphs.
+   * @param {SortParagraphsProximityParagraph[]} paragraphs Paragraphs.
    * @returns {HTMLElement} List of paragpraphs.
    */
   buildList(paragraphs) {
@@ -392,7 +392,7 @@ export default class SortParagraphsContent {
       'aria-label',
       `${this.params.taskDescription} ${this.params.a11y.listDescription}`,
     );
-    list.classList.add('h5p-sort-paragraphs-list');
+    list.classList.add('h5p-sort-paragraphs-proximity-list');
 
     paragraphs.forEach((paragraph, index) => {
 
@@ -411,10 +411,10 @@ export default class SortParagraphsContent {
   /**
    * Build paragraph.
    * @param {string} text Paragraph text.
-   * @returns {SortParagraphsParagraph} Paragraph.
+   * @returns {SortParagraphsProximityParagraph} Paragraph.
    */
   buildParagraph(text) {
-    const paragraph = new SortParagraphsParagraph(
+    const paragraph = new SortParagraphsProximityParagraph(
       {
         text: text,
         l10n: this.params.l10n,
@@ -827,13 +827,13 @@ export default class SortParagraphsContent {
    * @returns {HTMLElement[]} Draggables.
    */
   getDraggables() {
-    return Array.from(this.list.querySelectorAll('.h5p-sort-paragraphs-paragraph'));
+    return Array.from(this.list.querySelectorAll('.h5p-sort-paragraphs-proximity-paragraph'));
   }
 
   /**
    * Get paragraph for a draggable. Draggables are the DOM, paragraphs the objects.
    * @param {HTMLElement} draggable Draggable.
-   * @returns {SortParagraphsParagraph} Paragraph.
+   * @returns {SortParagraphsProximityParagraph} Paragraph.
    */
   getParagraph(draggable) {
     return this.paragraphs.reduce((result, paragraph) => {
@@ -1080,7 +1080,7 @@ export default class SortParagraphsContent {
 
     Object.keys(this.viewStates).forEach((state) => {
       this.content.classList.toggle(
-        `h5p-sort-paragraphs-view-state-${state}`,
+        `h5p-sort-paragraphs-proximity-view-state-${state}`,
         state !== newState,
       );
     });

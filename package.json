@@ -1,7 +1,7 @@
 {
-  "name": "h5p-sort-paragraphs",
-  "version": "0.11.16",
-  "description": "Let students sort paragraphs into the correct order",
+  "name": "h5p-sort-paragraphs-proximity",
+  "version": "0.1.1",
+  "description": "Let students sort paragraphs into the correct order with proximity scoring",
   "private": true,
   "scripts": {
     "lint": "stylelint './src/**/*.scss' && eslint './src/**/*.js'",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otacke/h5p-sort-paragraphs.git"
+    "url": "git+https://github.com/MedicalProtectionSociety/h5p-sort-paragraphs-proximity.git"
   },
   "keywords": [
     "h5p",

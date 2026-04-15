@@ -1,6 +1,6 @@
 var H5PUpgrades = H5PUpgrades || {};
 
-H5PUpgrades['H5P.SortParagraphs'] = (function () {
+H5PUpgrades['H5P.SortParagraphsProximity'] = (function () {
   return {
     0: {
       /**

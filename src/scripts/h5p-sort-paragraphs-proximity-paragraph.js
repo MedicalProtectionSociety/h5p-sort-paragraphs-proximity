@@ -1,9 +1,9 @@
 // Import required classes
-import Button from './h5p-sort-paragraphs-button.js';
-import Util from './h5p-sort-paragraphs-util.js';
+import Button from './h5p-sort-paragraphs-proximity-button.js';
+import Util from './h5p-sort-paragraphs-proximity-util.js';
 
 /** Class representing the content */
-export default class SortParagraphsParagraph {
+export default class SortParagraphsProximityParagraph {
   /**
    * @class
    * @param {object} params Parameters.
@@ -59,7 +59,7 @@ export default class SortParagraphsParagraph {
 
     // Placeholder to show when dragging
     this.placeholder = document.createElement('div');
-    this.placeholder.classList.add('h5p-sort-paragraphs-paragraph-placeholder');
+    this.placeholder.classList.add('h5p-sort-paragraphs-proximity-paragraph-placeholder');
 
     // These listeners prevent Firefox from showing draggable animation
     this.placeholder.addEventListener('dragover', (event) => {
@@ -84,25 +84,25 @@ export default class SortParagraphsParagraph {
    */
   buildParagraph() {
     const paragraph = document.createElement('div');
-    paragraph.classList.add('h5p-sort-paragraphs-paragraph');
+    paragraph.classList.add('h5p-sort-paragraphs-proximity-paragraph');
     paragraph.setAttribute('role', 'listitem');
     paragraph.setAttribute('draggable', true);
 
     // Container for paragraph text
     this.containerText = this.buildDIVContainer({
-      classText: 'h5p-sort-paragraphs-paragraph-container',
+      classText: 'h5p-sort-paragraphs-proximity-paragraph-container',
       innerHTML: this.params.text,
     });
     paragraph.appendChild(this.containerText);
 
     // Container for buttons
     this.buttonsContainer = document.createElement('div');
-    this.buttonsContainer.classList.add('h5p-sort-paragraphs-buttons-container');
+    this.buttonsContainer.classList.add('h5p-sort-paragraphs-proximity-buttons-container');
     paragraph.appendChild(this.buttonsContainer);
 
     // Left container for information
     const containerLeft = this.buildDIVContainer({
-      classText: 'h5p-sort-paragraphs-paragraph-button-container',
+      classText: 'h5p-sort-paragraphs-proximity-paragraph-button-container',
       attributes: {
         'aria-hidden': 'true',
       },
@@ -116,7 +116,7 @@ export default class SortParagraphsParagraph {
 
     // Right container for information
     const containerRight = this.buildDIVContainer({
-      classText: 'h5p-sort-paragraphs-paragraph-button-container',
+      classText: 'h5p-sort-paragraphs-proximity-paragraph-button-container',
       attributes: {
         'aria-hidden': 'true',
       },
@@ -125,7 +125,7 @@ export default class SortParagraphsParagraph {
 
     // Container for correct/wrong markers
     this.containerCorrections = this.buildDIVContainer({
-      classText: 'h5p-sort-paragraphs-paragraph-corrections',
+      classText: 'h5p-sort-paragraphs-proximity-paragraph-corrections',
     });
     containerRight.appendChild(this.containerCorrections);
 
@@ -136,7 +136,7 @@ export default class SortParagraphsParagraph {
 
     // H5P Question score explanations
     this.scoreExplanations = this.buildDIVContainer({
-      classText: 'h5p-sort-paragraphs-paragraph-score-explanations',
+      classText: 'h5p-sort-paragraphs-proximity-paragraph-score-explanations',
     });
     containerRight.appendChild(this.scoreExplanations);
 
@@ -182,7 +182,7 @@ export default class SortParagraphsParagraph {
           active: this.params.l10n.up,
           disabled: this.params.l10n.disabled,
         },
-        classes: ['h5p-sort-paragraphs-button', 'h5p-sort-paragraphs-paragraph-button-up'],
+        classes: ['h5p-sort-paragraphs-proximity-button', 'h5p-sort-paragraphs-proximity-paragraph-button-up'],
       },
       {
         onClick: (() => {
@@ -203,7 +203,7 @@ export default class SortParagraphsParagraph {
           active: this.params.l10n.down,
           disabled: this.params.l10n.disabled,
         },
-        classes: ['h5p-sort-paragraphs-button', 'h5p-sort-paragraphs-paragraph-button-down'],
+        classes: ['h5p-sort-paragraphs-proximity-button', 'h5p-sort-paragraphs-paragraph-proximity-button-down'],
       },
       {
         onClick: (() => {
@@ -366,7 +366,7 @@ export default class SortParagraphsParagraph {
    * Show paragraph.
    */
   show() {
-    this.content.classList.remove('h5p-sort-paragraphs-no-display');
+    this.content.classList.remove('h5p-sort-paragraphs-proximity-no-display');
     this.shown = true;
   }
 
@@ -374,7 +374,7 @@ export default class SortParagraphsParagraph {
    * Hide paragraph.
    */
   hide() {
-    this.content.classList.add('h5p-sort-paragraphs-no-display');
+    this.content.classList.add('h5p-sort-paragraphs-proximity-no-display');
     this.shown = false;
   }
 
@@ -545,10 +545,10 @@ export default class SortParagraphsParagraph {
     }
 
     if (enabled) {
-      this.content.classList.add(`h5p-sort-paragraphs-${effectName}`);
+      this.content.classList.add(`h5p-sort-paragraphs-proximity-${effectName}`);
     }
     else {
-      this.content.classList.remove(`h5p-sort-paragraphs-${effectName}`);
+      this.content.classList.remove(`h5p-sort-paragraphs-proximity-${effectName}`);
     }
   }
 

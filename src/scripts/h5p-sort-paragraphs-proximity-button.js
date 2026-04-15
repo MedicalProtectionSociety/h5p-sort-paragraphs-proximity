@@ -1,5 +1,5 @@
 // Import required classes
-import Util from './h5p-sort-paragraphs-util.js';
+import Util from './h5p-sort-paragraphs-proximity-util.js';
 
 /** Class representing the content */
 export default class Button {
@@ -95,14 +95,14 @@ export default class Button {
    * Show button.
    */
   show() {
-    this.button.classList.remove('h5p-sort-paragraphs-no-display');
+    this.button.classList.remove('h5p-sort-paragraphs-proximity-no-display');
   }
 
   /**
    * Hide button.
    */
   hide() {
-    this.button.classList.add('h5p-sort-paragraphs-no-display');
+    this.button.classList.add('h5p-sort-paragraphs-proximity-no-display');
   }
 
   /**
@@ -111,7 +111,7 @@ export default class Button {
   enable() {
     this.disabled = false;
 
-    this.button.classList.remove('h5p-sort-paragraphs-disabled');
+    this.button.classList.remove('h5p-sort-paragraphs-proximity-disabled');
 
     if (this.active) {
       this.activate();
@@ -125,7 +125,7 @@ export default class Button {
    * Disable button.
    */
   disable() {
-    this.button.classList.add('h5p-sort-paragraphs-disabled');
+    this.button.classList.add('h5p-sort-paragraphs-proximity-disabled');
     this.button.setAttribute('aria-label', this.params.a11y.disabled);
     this.button.setAttribute('title', this.params.a11y.disabled);
 
@@ -141,7 +141,7 @@ export default class Button {
     }
 
     if (this.params.type === 'toggle') {
-      this.button.classList.add('h5p-sort-paragraphs-button-active');
+      this.button.classList.add('h5p-sort-paragraphs-proximity-button-active');
       this.button.setAttribute('aria-pressed', true);
     }
 
@@ -162,7 +162,7 @@ export default class Button {
     this.active = false;
 
     if (this.params.type === 'toggle') {
-      this.button.classList.remove('h5p-sort-paragraphs-active');
+      this.button.classList.remove('h5p-sort-paragraphs-proximity-active');
       this.button.setAttribute('aria-pressed', false);
     }
 

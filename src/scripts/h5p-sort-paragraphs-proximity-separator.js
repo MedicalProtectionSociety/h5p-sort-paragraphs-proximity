@@ -1,5 +1,5 @@
 /** Class representing the content */
-export default class SortParagraphsSeparator {
+export default class SortParagraphsProximitySeparator {
   /**
    * @class
    */
@@ -22,7 +22,7 @@ export default class SortParagraphsSeparator {
    */
   buildSeparator() {
     const separator = document.createElement('div');
-    separator.classList.add('h5p-sort-paragraphs-separator');
+    separator.classList.add('h5p-sort-paragraphs-proximity-separator');
     return separator;
   }
 
@@ -30,14 +30,14 @@ export default class SortParagraphsSeparator {
    * Show seperator.
    */
   show() {
-    this.content.classList.remove('h5p-sort-paragraphs-no-display');
+    this.content.classList.remove('h5p-sort-paragraphs-proximity-no-display');
   }
 
   /**
    * Hide seperator.
    */
   hide() {
-    this.content.classList.add('h5p-sort-paragraphs-no-display');
+    this.content.classList.add('h5p-sort-paragraphs-proximity-no-display');
   }
 
   /**
@@ -52,10 +52,10 @@ export default class SortParagraphsSeparator {
     }
 
     if (enabled) {
-      this.content.classList.add(`h5p-sort-paragraphs-${effectName}`);
+      this.content.classList.add(`h5p-sort-paragraphs-proximity-${effectName}`);
     }
     else {
-      this.content.classList.remove(`h5p-sort-paragraphs-${effectName}`);
+      this.content.classList.remove(`h5p-sort-paragraphs-proximity-${effectName}`);
     }
   }
 

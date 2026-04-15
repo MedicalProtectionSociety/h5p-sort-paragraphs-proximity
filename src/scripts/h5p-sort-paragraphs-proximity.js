@@ -1,11 +1,11 @@
 // Import required classes
-import SortParagraphsContent from './h5p-sort-paragraphs-content.js';
-import Util from './h5p-sort-paragraphs-util.js';
+import SortParagraphsProximityContent from './h5p-sort-paragraphs-proximity-content.js';
+import Util from './h5p-sort-paragraphs-proximity-util.js';
 
 /**
  * Main class.
  */
-export default class SortParagraphs extends H5P.Question {
+export default class SortParagraphsProximity extends H5P.Question {
   /**
    * @class
    * @param {object} params Parameters passed by the editor.
@@ -13,7 +13,7 @@ export default class SortParagraphs extends H5P.Question {
    * @param {object} [extras] Saved state, metadata, etc.
    */
   constructor(params, contentId, extras = {}) {
-    super('sort-paragraphs'); // CSS class selector for content's iframe
+    super('sort-paragraphs-proximity'); // CSS class selector for content's iframe
 
     /*
      * this.params.behaviour.enableSolutionsButton and this.params.behaviour.enableRetry
@@ -92,7 +92,7 @@ export default class SortParagraphs extends H5P.Question {
       this.extras.previousState :
       null;
 
-    this.content = new SortParagraphsContent(
+    this.content = new SortParagraphsProximityContent(
       {
         paragraphs: this.params.paragraphs,
         addButtonsForMovement: this.params.behaviour.addButtonsForMovement,
@@ -110,7 +110,7 @@ export default class SortParagraphs extends H5P.Question {
           down: this.params.l10n.down,
           disabled: this.params.l10n.disabled,
         },
-        viewStates: SortParagraphs.VIEW_STATES,
+        viewStates: SortParagraphsProximity.VIEW_STATES,
       },
       {
         onInteracted: () => {
@@ -162,7 +162,7 @@ export default class SortParagraphs extends H5P.Question {
     // Register task introduction text
     if (this.params.taskDescription) {
       const introduction = document.createElement('div');
-      introduction.classList.add('h5p-sort-paragraphs-task-description');
+      introduction.classList.add('h5p-sort-paragraphs-proximity-task-description');
       introduction.innerHTML = this.params.taskDescription;
       this.setIntroduction(introduction);
     }
@@ -183,7 +183,7 @@ export default class SortParagraphs extends H5P.Question {
       // Need to wait until DOM is ready for us
       H5P.externalDispatcher.on('initialized', () => {
         this.isExternalCall = true; // Prevent focussing
-        if (this.previousState.viewState === SortParagraphs.VIEW_STATES.results) {
+        if (this.previousState.viewState === SortParagraphsProximity.VIEW_STATES.results) {
           this.setViewState('results');
           this.checkAnswer();
         }
@@ -197,7 +197,7 @@ export default class SortParagraphs extends H5P.Question {
       });
     }
     else {
-      this.previousState.viewState = SortParagraphs.VIEW_STATES.task;
+      this.previousState.viewState = SortParagraphsProximity.VIEW_STATES.task;
     }
 
     // Register Buttons
@@ -265,7 +265,7 @@ export default class SortParagraphs extends H5P.Question {
     if (!this.content) {
       score = this.previousState?.score || 0;
     }
-    else if (this.viewState === SortParagraphs.VIEW_STATES.solutions) {
+    else if (this.viewState === SortParagraphsProximity.VIEW_STATES.solutions) {
       score = this.currentScore || this.previousState?.score || 0;
     }
     else {
@@ -402,7 +402,7 @@ export default class SortParagraphs extends H5P.Question {
    * Check answer.
    */
   checkAnswer() {
-    if (this.viewState === SortParagraphs.VIEW_STATES.task) {
+    if (this.viewState === SortParagraphsProximity.VIEW_STATES.task) {
       // checkAnswer was not triggered to recreate previous state
       this.trigger(this.getXAPIAnswerEvent());
 
@@ -420,7 +420,7 @@ export default class SortParagraphs extends H5P.Question {
       this.hideButton('check-answer');
 
       if (
-        this.viewState !== SortParagraphs.VIEW_STATES.solutions &&
+        this.viewState !== SortParagraphsProximity.VIEW_STATES.solutions &&
         this.params.behaviour.enableSolutionsButton &&
         this.getScore() !== this.getMaxScore()
       ) {
@@ -432,7 +432,7 @@ export default class SortParagraphs extends H5P.Question {
       }
 
       this.content.showResults({
-        skipExplanation: this.viewState === SortParagraphs.VIEW_STATES.solutions,
+        skipExplanation: this.viewState === SortParagraphsProximity.VIEW_STATES.solutions,
         skipFocus: isExternalCall,
       });
 
@@ -473,7 +473,7 @@ export default class SortParagraphs extends H5P.Question {
     if (this.extras.metadata) {
       raw = this.extras.metadata.title;
     }
-    raw = raw || SortParagraphs.DEFAULT_DESCRIPTION;
+    raw = raw || SortParagraphsProximity.DEFAULT_DESCRIPTION;
 
     // H5P Core function: createTitle
     return H5P.createTitle(raw);
@@ -484,7 +484,7 @@ export default class SortParagraphs extends H5P.Question {
    * @returns {string} Description.
    */
   getDescription() {
-    return this.params.taskDescription || SortParagraphs.DEFAULT_DESCRIPTION;
+    return this.params.taskDescription || SortParagraphsProximity.DEFAULT_DESCRIPTION;
   }
 
   /**
@@ -505,7 +505,7 @@ export default class SortParagraphs extends H5P.Question {
     return {
       order: this.content.getDraggablesOrder(),
       viewState: this.viewState,
-      score: this.viewState === SortParagraphs.VIEW_STATES.task ?
+      score: this.viewState === SortParagraphsProximity.VIEW_STATES.task ?
         0 :
         this.getScore(),
     };
@@ -525,18 +525,18 @@ export default class SortParagraphs extends H5P.Question {
   setViewState(state) {
     if (
       typeof state === 'string' &&
-      SortParagraphs.VIEW_STATES[state] !== undefined
+      SortParagraphsProximity.VIEW_STATES[state] !== undefined
     ) {
-      this.viewState = SortParagraphs.VIEW_STATES[state];
+      this.viewState = SortParagraphsProximity.VIEW_STATES[state];
     }
     else if (
       typeof state === 'number' &&
-      Object.values(SortParagraphs.VIEW_STATES).includes(state)
+      Object.values(SortParagraphsProximity.VIEW_STATES).includes(state)
     ) {
       this.viewState = state;
 
       this.content.setViewState(
-        SortParagraphs.VIEW_STATES.find((value) => value === state).keys[0],
+        SortParagraphsProximity.VIEW_STATES.find((value) => value === state).keys[0],
       );
     }
   }
@@ -588,7 +588,7 @@ export default class SortParagraphs extends H5P.Question {
 }
 
 /** @constant {string} */
-SortParagraphs.DEFAULT_DESCRIPTION = 'SortParagraphs';
+SortParagraphsProximity.DEFAULT_DESCRIPTION = 'SortParagraphsProximity';
 
 /** @constant {object} view states */
-SortParagraphs.VIEW_STATES = { task: 0, results: 1, solutions: 2 };
+SortParagraphsProximity.VIEW_STATES = { task: 0, results: 1, solutions: 2 };

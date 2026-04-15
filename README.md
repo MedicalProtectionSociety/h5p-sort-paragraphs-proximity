@@ -1,5 +1,9 @@
-# H5P Sort Paragraphs
-Let students sort paragraphs into the correct order.
+# H5P Sort Paragraphs Proximity
+Let students sort paragraphs into the correct order with proximity scoring.
+
+NEW PLEASE NOTE: This is a fork of the below to add in custom proximity to
+the corect answer scoring for situational judgement tests BELOW IS THE ORIGINAL 
+TEXT FROM THE REPO
 
 PLEASE NOTE: THIS CONTENT TYPE IS THE RESULT OF CONTRACT WORK WITH SPECIFIC
 REQUIREMENTS THAT MAY NOT MATCH YOUR OWN EXPECTATIONS. WHILE OLIVER IS THE

@@ -1,7 +1,7 @@
 @use "@styles/main";
 
-.h5p-sort-paragraphs {
-  .h5p-sort-paragraphs-paragraph-button-container {
+.h5p-sort-paragraphs-proximity {
+  .h5p-sort-paragraphs-paragraph-proximity-button-container {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
@@ -9,7 +9,7 @@
     width: 3.25em;
   }
 
-  .h5p-sort-paragraphs-paragraph {
+  .h5p-sort-paragraphs-proximity-paragraph {
     background-color: main.$color-enabled;
     border-color: transparent;
     border-radius: .3em;
@@ -34,15 +34,15 @@
       transition: transform .5s ease-in-out;
     }
 
-    &.h5p-sort-paragraphs-no-display {
+    &.h5p-sort-paragraphs-proximity-no-display {
       display: none;
     }
 
-    &.h5p-sort-paragraphs-ghosted {
+    &.h5p-sort-paragraphs-proximity-ghosted {
       opacity: 0.4;
     }
 
-    &.h5p-sort-paragraphs-disabled {
+    &.h5p-sort-paragraphs-proximity-disabled {
       cursor: auto;
     }
 
@@ -50,75 +50,75 @@
       margin-bottom: 0;
     }
 
-    &.h5p-sort-paragraphs-over, &.h5p-sort-paragraphs-selected {
+    &.h5p-sort-paragraphs-proximity-over, &.h5p-sort-paragraphs-proximity-selected {
       background: main.$color-over;
       border-color: #0825ff;
       box-shadow: 0 0.1em 0 #b1c5e0;
       color: main.$color-over-text;
     }
 
-    .h5p-sort-paragraphs-paragraph-corrections {
+    .h5p-sort-paragraphs-proximity-paragraph-corrections {
       font-size: 1.5em;
       padding-top: 0.5em;
     }
 
-    &.h5p-sort-paragraphs-correct {
+    &.h5p-sort-paragraphs-proximity-correct {
       background: main.$color-correct-light;
       border-color: main.$color-correct-light;
       box-shadow: 0 0.1em 0 main.$color-correct-box-shadow;
       color: main.$color-correct-dark;
 
-      .h5p-sort-paragraphs-paragraph-corrections::before {
+      .h5p-sort-paragraphs-proximity-paragraph-corrections::before {
         content: main.$icon-correct;
         font-family: 'H5PFontAwesome4', sans-serif;
       }
 
-      .h5p-sort-paragraphs-paragraph-button-container {
+      .h5p-sort-paragraphs-proximity-paragraph-button-container {
         justify-content: flex-end;
       }
     }
 
-    &.h5p-sort-paragraphs-wrong {
+    &.h5p-sort-paragraphs-proximity-wrong {
       background: main.$color-wrong-light;
       border-color: main.$color-wrong-light;
       box-shadow: 0 0.1em 0 main.$color-wrong-box-shadow;
       color: main.$color-wrong-dark;
 
-      .h5p-sort-paragraphs-paragraph-corrections::before {
+      .h5p-sort-paragraphs-proximity-paragraph-corrections::before {
         content: main.$icon-wrong;
         font-family: 'H5PFontAwesome4', sans-serif;
       }
 
-      .h5p-sort-paragraphs-paragraph-button-container {
+      .h5p-sort-paragraphs-proximity-paragraph-button-container {
         justify-content: flex-end;
       }
     }
 
-    &.h5p-sort-paragraphs-solution .h5p-sort-paragraphs-paragraph-corrections::before {
+    &.h5p-sort-paragraphs-proximity-solution .h5p-sort-paragraphs-paragraph-proximity-corrections::before {
       color: main.$color-disabled-text;
       content: '\f06e';
       font-family: 'H5PFontAwesome4', sans-serif;
     }
 
-    &.h5p-sort-paragraphs-disabled:not(.animate-translation):not(.h5p-sort-paragraphs-wrong):not(.h5p-sort-paragraphs-correct) {
+    &.h5p-sort-paragraphs-proximity-disabled:not(.animate-translation):not(.h5p-sort-paragraphs-proximity-wrong):not(.h5p-sort-paragraphs-proximity-correct) {
       background-color: main.$color-disabled;
       border-color: main.$color-disabled;
       color: main.$color-disabled-text;
     }
 
-    &.h5p-sort-paragraphs-disabled.h5p-sort-paragraphs-solution {
+    &.h5p-sort-paragraphs-proximity-disabled.h5p-sort-paragraphs-proximity-solution {
       background-color: main.$color-disabled;
       border-color: main.$color-disabled;
       color: main.$color-disabled-text;
     }
 
-    .h5p-sort-paragraphs-buttons-container {
+    .h5p-sort-paragraphs-proximity-buttons-container {
       display: flex;
 
       &:not(.vertical) {
         flex-direction: row;
 
-        .h5p-sort-paragraphs-paragraph-button-container {
+        .h5p-sort-paragraphs-proximity-paragraph-button-container {
           padding: 0 .25em;
         }
       }
@@ -127,14 +127,14 @@
         flex-direction: column;
         justify-content: space-between;
 
-        .h5p-sort-paragraphs-paragraph-button-container {
+        .h5p-sort-paragraphs-proximity-paragraph-button-container {
           padding: .25em 0;
         }
       }
     }
   }
 
-  .h5p-sort-paragraphs-paragraph-container-left {
+  .h5p-sort-paragraphs-proximity-paragraph-container-left {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
@@ -143,7 +143,7 @@
     width: 3.25em;
   }
 
-  .h5p-sort-paragraphs-button {
+  .h5p-sort-paragraphs-proximity-button {
     align-items: center;
     background-color: main.$color-button;
     background-position: center;
@@ -163,11 +163,11 @@
     padding: 0;
     width: 2.75em;
 
-    &.h5p-sort-paragraphs-no-display {
+    &.h5p-sort-paragraphs-proximity-no-display {
       display: none;
     }
 
-    &.h5p-sort-paragraphs-disabled {
+    &.h5p-sort-paragraphs-proximity-disabled {
       background-color: main.$color-button-disabled;
 
       /* Originally #eeeeee as in many H5P contents */
@@ -175,7 +175,7 @@
       cursor: auto;
     }
 
-    &:not(.h5p-sort-paragraphs-disabled) {
+    &:not(.h5p-sort-paragraphs-proximity-disabled) {
       &:hover {
         background-color: main.$color-hover;
       }
@@ -186,19 +186,19 @@
     }
   }
 
-  .h5p-sort-paragraphs-paragraph-button-up::before {
+  .h5p-sort-paragraphs-proximity-paragraph-button-up::before {
     font-family: 'H5PFontAwesome4', sans-serif;
     content: main.$icon-button-up;
     font-size: 1.5em;
   }
 
-  .h5p-sort-paragraphs-paragraph-button-down::before {
+  .h5p-sort-paragraphs-proximity-paragraph-button-down::before {
     font-family: 'H5PFontAwesome4', sans-serif;
     content: main.$icon-button-down;
     font-size: 1.5em;
   }
 
-  .h5p-sort-paragraphs-paragraph-container {
+  .h5p-sort-paragraphs-proximity-paragraph-container {
     border: 2px solid transparent;
     display: flex;
     flex-direction: column;
@@ -214,7 +214,7 @@
     }
   }
 
-  .h5p-sort-paragraphs-paragraph-score-explanations {
+  .h5p-sort-paragraphs-proximity-paragraph-score-explanations {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -227,7 +227,7 @@
     }
   }
 
-  .h5p-sort-paragraphs-separator {
+  .h5p-sort-paragraphs-proximity-separator {
     border-radius: 0.3em;
     height: 0.4em;
     margin: 0.4em 0;
@@ -236,17 +236,17 @@
     margin-left: auto;
     margin-right: auto;
 
-    &.h5p-sort-paragraphs-no-display {
+    &.h5p-sort-paragraphs-proximity-no-display {
       display: none;
     }
 
-    &.h5p-sort-paragraphs-correct {
+    &.h5p-sort-paragraphs-proximity-correct {
       background: main.$color-correct-dark;
       border-color: main.$color-correct-light;
       box-shadow: 0 0.1em 0 main.$color-correct-box-shadow;
     }
 
-    &.h5p-sort-paragraphs-wrong {
+    &.h5p-sort-paragraphs-proximity-wrong {
       background: main.$color-wrong-dark;
       border-color: main.$color-wrong-light;
       box-shadow: 0 0.1em 0 main.$color-wrong-box-shadow;
@@ -261,7 +261,7 @@
     }
   }
 
-  .h5p-sort-paragraphs-paragraph-placeholder {
+  .h5p-sort-paragraphs-proximity-paragraph-placeholder {
     background-color: #c7ceff;
     border: .25em dashed #042cff;
     border-radius: .3em;
@@ -270,14 +270,14 @@
 }
 
 // Firefox would show focus on clicking a disabled paragraph
-.h5p-content:not(.using-mouse) .h5p-sort-paragraphs {
-  .h5p-sort-paragraphs-paragraph.h5p-sort-paragraphs-disabled:focus {
+.h5p-content:not(.using-mouse) .h5p-sort-paragraphs-proximity {
+  .h5p-sort-paragraphs-proximity-paragraph.h5p-sort-paragraphs-proximity-disabled:focus {
     border-color: main.$color-disabled-focus;
     box-shadow: 0 0 .5em 0 main.$color-disabled-focus;
     outline: none;
   }
 
-  .h5p-sort-paragraphs-paragraph:not(.h5p-sort-paragraphs-disabled):focus {
+  .h5p-sort-paragraphs-proximity-paragraph:not(.h5p-sort-paragraphs-proximity-disabled):focus {
     border-color: main.$color-focus;
     box-shadow: 0 0 .5em 0 main.$color-focus;
     outline: none;
