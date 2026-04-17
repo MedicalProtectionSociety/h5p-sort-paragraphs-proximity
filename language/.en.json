@@ -64,6 +64,9 @@
             },
             {
               "label": "Correct sequence"
+            },
+            {
+                "label: "Proximity Scoring""
             }
           ]
         },

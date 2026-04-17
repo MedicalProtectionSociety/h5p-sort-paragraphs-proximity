@@ -16,7 +16,7 @@
     "h5p",
     "library"
   ],
-  "author": "Oliver Tacke",
+  "author": "Oliver Tacke, Adam Laird",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.29.0",

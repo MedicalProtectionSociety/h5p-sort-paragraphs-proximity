@@ -331,7 +331,11 @@ export default class SortParagraphsProximityContent {
         score += (match) ? 1 : 0;
         score += (!match && this.options.penalties) ? -1 : 0;
 
-        return score;
+          return {
+              correctAnswers,
+              score: Math.max(0, score),
+              maxScore: this.paragraphs.length
+          };
       }, 0);
     }
     else if (this.options.scoringMode === 'transitions') {
@@ -391,11 +395,11 @@ export default class SortParagraphsProximityContent {
 
         correctAnswers[index] = (distance === 0);
       });
-
-      return {
-        correctAnswers,
-        score: Math.max(0, score)
-      };
+        return {
+            correctAnswers,
+            score: Math.max(0, score),
+            maxScore: this.paragraphs.length * this.paragraphs.length
+        };
     }
 
     return {

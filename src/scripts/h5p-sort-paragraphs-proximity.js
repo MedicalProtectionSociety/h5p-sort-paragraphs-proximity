@@ -176,8 +176,8 @@ export default class SortParagraphsProximity extends H5P.Question {
     this.previousState = this.previousState ?? {};
     if (
       (
-        this.previousState.viewState === SortParagraphs.VIEW_STATES.results ||
-        this.previousState.viewState === SortParagraphs.VIEW_STATES.solutions
+        this.previousState.viewState === SortParagraphsProximity.VIEW_STATES.results ||
+        this.previousState.viewState === SortParagraphsProximity.VIEW_STATES.solutions
       )
     ) {
       // Need to wait until DOM is ready for us
