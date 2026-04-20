@@ -1,7 +1,7 @@
 @use "@styles/main";
 
 .h5p-sort-paragraphs-proximity {
-  .h5p-sort-paragraphs-paragraph-proximity-button-container {
+  .h5p-sort-paragraphs-proximity-paragraph-button-container {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
@@ -94,7 +94,7 @@
       }
     }
 
-    &.h5p-sort-paragraphs-proximity-solution .h5p-sort-paragraphs-paragraph-proximity-corrections::before {
+    &.h5p-sort-paragraphs-proximity-solution .h5p-sort-paragraphs-proximity-paragraph-corrections::before {
       color: main.$color-disabled-text;
       content: '\f06e';
       font-family: 'H5PFontAwesome4', sans-serif;

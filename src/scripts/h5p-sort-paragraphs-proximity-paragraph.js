@@ -203,7 +203,7 @@ export default class SortParagraphsProximityParagraph {
           active: this.params.l10n.down,
           disabled: this.params.l10n.disabled,
         },
-        classes: ['h5p-sort-paragraphs-proximity-button', 'h5p-sort-paragraphs-paragraph-proximity-button-down'],
+        classes: ['h5p-sort-paragraphs-proximity-button', 'h5p-sort-paragraphs-proximity-paragraph-button-down'],
       },
       {
         onClick: (() => {
