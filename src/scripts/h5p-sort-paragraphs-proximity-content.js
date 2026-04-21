@@ -309,105 +309,90 @@ export default class SortParagraphsProximityContent {
    * Compute results.
    * @returns {object} Results.
    */
-  computeResults() {
-    let score = 0;
-    let correctAnswers;
+    computeResults() {
+        let score = 0;
+        let correctAnswers;
 
-    // Determine paragraph id at each position.
-    const draggables = this.getDraggables();
-    const paragraphs = this.paragraphs.map((paragraph) => paragraph.getDOM());
-    const ids = draggables.map((draggable) => paragraphs.indexOf(draggable));
+        // Determine paragraph id at each position.
+        const draggables = this.getDraggables();
+        const paragraphs = this.paragraphs.map((paragraph) => paragraph.getDOM());
+        const ids = draggables.map((draggable) => paragraphs.indexOf(draggable));
 
-    if (this.options.scoringMode === 'positions') {
-      correctAnswers = Util.createArray(this.paragraphs.length);
+        if (this.options.scoringMode === 'positions') {
+          correctAnswers = Util.createArray(this.paragraphs.length);
 
-      // +1 if match, -1 if no match only if penalty is on
-      score = ids.reduce((score, id, index) => {
-        const match = (id === index) ||
-          (this.options.duplicatesInterchangeable && draggables[index].innerText === paragraphs[index].innerText);
+          // +1 if match, -1 if no match only if penalty is on
+          score = ids.reduce((score, id, index) => {
+            const match = (id === index) ||
+              (this.options.duplicatesInterchangeable && draggables[index].innerText === paragraphs[index].innerText);
 
-        correctAnswers[index] = match;
+            correctAnswers[index] = match;
 
-        score += (match) ? 1 : 0;
-        score += (!match && this.options.penalties) ? -1 : 0;
+            score += (match) ? 1 : 0;
+            score += (!match && this.options.penalties) ? -1 : 0;
 
-          return {
-              correctAnswers,
-              score: Math.max(0, score),
-              maxScore: this.paragraphs.length
-          };
-      }, 0);
-    }
-    else if (this.options.scoringMode === 'transitions') {
-      correctAnswers = Util.createArray(this.paragraphs.length - 1);
-
-      const draggablesPlain = draggables.map((draggable) => draggable.innerText);
-      const paragraphsPlain = paragraphs.map((paragraph) => paragraph.innerText);
-
-      // +1 for every correct sequence regardless of position
-      for (let index = 0; index < ids.length - 1; index++) {
-        const inputSequence = [draggablesPlain[index], draggablesPlain[index + 1]];
-
-        // Determine if current plain sequence is found in solution
-        const matchPlain = paragraphsPlain.reduce((result, current, index) => {
-          if (result === true) {
-            return true;
-          }
-
-          if (index === paragraphsPlain.length - 1) {
-            return false;
-          }
-
-          return current === inputSequence[0] && paragraphsPlain[index + 1] === inputSequence[1];
-        }, false);
-
-        if ((this.options.duplicatesInterchangeable && matchPlain) || ids[index] === ids[index + 1] - 1) {
-          correctAnswers[index] = true;
-
-          score++;
+            return score;
+          }, 0);
         }
-        else {
-          correctAnswers[index] = false;
+        else if (this.options.scoringMode === 'transitions') {
+          correctAnswers = Util.createArray(this.paragraphs.length - 1);
+
+          const draggablesPlain = draggables.map((draggable) => draggable.innerText);
+          const paragraphsPlain = paragraphs.map((paragraph) => paragraph.innerText);
+
+          // +1 for every correct sequence regardless of position
+          for (let index = 0; index < ids.length - 1; index++) {
+            const inputSequence = [draggablesPlain[index], draggablesPlain[index + 1]];
+
+            // Determine if current plain sequence is found in solution
+            const matchPlain = paragraphsPlain.reduce((result, current, index) => {
+              if (result === true) {
+                return true;
+              }
+
+              if (index === paragraphsPlain.length - 1) {
+                return false;
+              }
+
+              return current === inputSequence[0] && paragraphsPlain[index + 1] === inputSequence[1];
+            }, false);
+
+            if ((this.options.duplicatesInterchangeable && matchPlain) || ids[index] === ids[index + 1] - 1) {
+              correctAnswers[index] = true;
+
+              score++;
+            }
+            else {
+              correctAnswers[index] = false;
+            }
+          }
         }
-      }
-    }
-    else if (this.options.scoringMode === 'proximity') {
+        else if (this.options.scoringMode === 'proximity') {
 
-      correctAnswers = Util.createArray(this.paragraphs.length);
+          correctAnswers = Util.createArray(this.paragraphs.length);
 
-      const draggablesPlain = draggables.map(d => d.innerText.trim());
+          // reuse ids already calculated above
+          // ids = current order vs correct order
 
-      const correctOrder = [...paragraphs]
-        .map(p => p.innerText.trim());
+          score = ids.reduce((total, id, index) => {
 
-      let score = 0;
+            const distance = Math.abs(id - index);
 
-      draggablesPlain.forEach((item, index) => {
+            // simple scoring: closer = better
+            const points = Math.max(0, this.paragraphs.length - distance);
 
-        const correctIndex = correctOrder.indexOf(item);
+            correctAnswers[index] = (distance === 0);
 
-        const distance = Math.abs(index - correctIndex);
+            return total + points;
 
-        // convert distance → score contribution
-        const itemScore = Math.max(0, this.paragraphs.length - distance);
+          }, 0);
+        }
 
-        score += itemScore;
-
-        correctAnswers[index] = (distance === 0);
-      });
         return {
-            correctAnswers,
-            score: Math.max(0, score),
-            maxScore: this.paragraphs.length * this.paragraphs.length
+          correctAnswers: correctAnswers,
+          score: Math.max(0, score),
         };
-    }
-
-    return {
-      correctAnswers: correctAnswers,
-      score: Math.max(0, score),
-    };
-  }
-
+      }
   /**
    * Build list of paragraphs.
    * @param {SortParagraphsProximityParagraph[]} paragraphs Paragraphs.
