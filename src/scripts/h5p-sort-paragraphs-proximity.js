@@ -282,11 +282,24 @@ export default class SortParagraphsProximity extends H5P.Question {
    * @returns {number} Score necessary for mastering.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
    */
-  getMaxScore() {
-    const length = this.params.paragraphs.length;
-    // For transitions mode, cound number of paragraph transitions
-    return (this.params.behaviour.scoringMode === 'positions') ? length : length - 1;
-  }
+    getMaxScore() {
+      const length = this.params.paragraphs.length;
+      const mode = this.params.behaviour.scoringMode;
+
+      if (mode === 'positions') {
+        return length;
+      }
+
+      if (mode === 'transitions') {
+        return length - 1;
+      }
+
+      if (mode === 'proximity') {
+        return length * length; // gives you a bigger range for partial scoring
+      }
+
+      return length;
+    }
 
   /**
    * Show solutions.
