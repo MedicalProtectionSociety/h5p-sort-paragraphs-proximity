@@ -371,15 +371,27 @@ export default class SortParagraphsProximityContent {
 
           correctAnswers = Util.createArray(this.paragraphs.length);
 
-          // reuse ids already calculated above
-          // ids = current order vs correct order
-
           score = ids.reduce((total, id, index) => {
 
             const distance = Math.abs(id - index);
 
-            // simple scoring: closer = better
-            const points = Math.max(0, this.paragraphs.length - distance);
+            let points = 0;
+
+            if (distance === 0) {
+              points = 4;        // perfect
+            }
+            else if (distance === 1) {
+              points = 3;        // very close
+            }
+            else if (distance === 2) {
+              points = 2;        // near miss
+            }
+            else if (distance === 3) {
+              points = 1;        // far
+            }
+            else {
+              points = 0;        // very wrong
+            }
 
             correctAnswers[index] = (distance === 0);
 

@@ -294,9 +294,9 @@ export default class SortParagraphsProximity extends H5P.Question {
         return length - 1;
       }
 
-      if (mode === 'proximity') {
-        return length * length; // gives you a bigger range for partial scoring
-      }
+    if (mode === 'proximity') {
+          return length * 4; // 4 marks per item
+        }
 
       return length;
     }
