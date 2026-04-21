@@ -44,13 +44,13 @@ minify the code.
 
 
 ## Reporting
-Sort the paragraphs, like other H5P content types, uses the [xAPI](https://xapi.com/overview/)
+Sort the paragraphs proximity, like other H5P content types, uses the [xAPI](https://xapi.com/overview/)
 standard to transfer information about the user experience to a LRS or other platform
 collecting data.
 
 The results are modeled for an [xAPI interaction type](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#interaction-activities)
 of `sequencing`. However that interaction type does not cover all the features that
-Sort the Paragraphs support, so reporting from the xAPI results blindly may fall short.
+Sort the Paragraphs proximity support, so reporting from the xAPI results blindly may fall short.
 These two cases may need to be covered separately by reporting that is generated from
 the results: scoring mode of "correct sequence" and treating duplicates identically.
 
