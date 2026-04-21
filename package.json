@@ -1,6 +1,6 @@
 {
   "name": "h5p-sort-paragraphs-proximity",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Let students sort paragraphs into the correct order with proximity scoring",
   "private": true,
   "scripts": {
